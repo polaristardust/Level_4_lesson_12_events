@@ -49,9 +49,13 @@
     3. Set the ptag object's onclick event handler property to an anon function that shows an alert with the instructions. 
     */
 
+    const ptg = document.querySelector('p');
+    ptg.onclick = function(){
+      alert("Hover over a drum picture to play its sound. Type one of the keys on your keyboard to add guitar sounds");
+    }
    
 
-    function instructions() {
+    /*function instructions() {
       alert("Hover over a drum picture to play its sound. Type one of the keys on your keyboard to add guitar sounds");
     }
 
@@ -61,7 +65,11 @@
     2. Use the forEach() method to loop through each drumset part and add an event listener for 'mouseover', have it call the playDrums function 
     */
     
-
+    const drums = document.querySelectorAll(".drumset-part");
+    drums.forEach(function (drum) {
+      drum.addEventListener("click", playDrums);
+    });
+    
 
 
     /* Exercise 4
@@ -72,10 +80,15 @@
     5. Set the audio's currentTime to 0
     6. Play the audio using play() method
     */
-
     
-
-
+    function playDrums(event) {
+      console.log(event);
+      let drumId = event.currentTarget.id;
+      let audio = document.getElementById(drumId+"-audio");
+      audio.currentTime = 0;
+      audio.play();
+    }
+    
 
     /* ============================= Events lesson Part 2: Making the keyboard guitar sounds =========================== */
     const body = document.querySelector('body');
